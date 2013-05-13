@@ -50,6 +50,7 @@ public:
 		
 	T magnitude() const;
 	T dot(const Vector&) const;
+	Vector<T,3> cross(const Vector<T,3>&) const;
 	// Technical Information
 	unsigned int size();
 };
@@ -283,6 +284,19 @@ T Vector<T,n>::operator*(const Vector &rhs) const
 	return Vector<T,n>::dot(rhs);
 }
 
+template<class T, unsigned int n>
+Vector<T,3> Vector<T,n>::cross(const Vector<T,3> &rhs) const 
+{
+	Vector<T,3> res;
+	Vector<T,3> lhs = *this;
+
+	res.coeff((lhs.coeff(1)*rhs.coeff(2))-(lhs.coeff(2)*rhs.coeff(1)),0);
+	res.coeff((lhs.coeff(2)*rhs.coeff(0))-(lhs.coeff(0)*rhs.coeff(2)),1);
+	res.coeff((lhs.coeff(0)*rhs.coeff(1))-(lhs.coeff(1)*rhs.coeff(0)),2);
+
+	return res;
+}
+
 //////////////////////////////////////////////////////////
 // Technical Information
 //////////////////////////////////////////////////////////
@@ -292,3 +306,11 @@ unsigned int Vector<T,n>::size()
 {
 	return n;
 }
+
+//////////////////////////////////////////////////////////
+// Typedefs
+/////////////////////////////////////////////////////////
+typedef Vector<double,2> Vector2d;
+typedef Vector<double,3> Vector3d;
+typedef Vector<int,2> Vector2i;
+typedef Vector<int,3> Vector3i;
