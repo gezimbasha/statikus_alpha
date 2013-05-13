@@ -1,4 +1,5 @@
 #pragma once
+#include <stdarg.h>
 #include <iostream>
 #include <math.h>
 
@@ -10,7 +11,8 @@ class Vector
 	T x[n];
 public:
 	//Constructors
-	Vector(void);
+	Vector();
+	Vector(T X, ...);
 	Vector(T*, unsigned int);
 	Vector(T);
 	~Vector(void);
@@ -60,7 +62,7 @@ public:
 ////////////////////////////////////////////////////////////////////////
 
 template<class T, unsigned int n>
-Vector<T,n>::Vector(void)
+Vector<T,n>::Vector()
 {
 	for(unsigned int i=0; i<n; i++)
 		x[i] = 0;
@@ -83,6 +85,17 @@ Vector<T,n>::Vector(T t)
 {
 	for(unsigned int i=0; i<n; i++)
 		x[i] = t;
+}
+
+template<class T, unsigned int n>
+Vector<T,n>::Vector(T X, ...)
+{
+	x[0] = X;
+	va_list args;
+	va_start(args, X);
+		for(int i=1; i<n; i++)	
+			x[i] = va_arg(args, T);
+	va_end(args);
 }
 
 template<class T, unsigned int n>
