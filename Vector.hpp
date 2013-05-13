@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
 
 template<class T, unsigned int n>
 class Vector
@@ -14,7 +17,7 @@ public:
 	void coeff(T, unsigned int);
 
 	// Operators
-
+	template<class T, unsigned int n> friend ostream& operator << (ostream&, Vector<T,n>&);
 
 	// Class technical information
 	unsigned int size();
@@ -69,8 +72,14 @@ void Vector<T, n>::coeff(T t, unsigned int i)
 //////////////////////////////////////////////////////////
 // Operators
 //////////////////////////////////////////////////////////
+template<class T, unsigned int n>
+ostream& operator << (ostream& os, Vector<T,n> &A)
+{
+	for(int i=0; i<n; i++)
+		os << A.coeff(i) << endl;
 
-
+	return os;
+}
 
 //////////////////////////////////////////////////////////
 // Technical Information
