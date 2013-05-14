@@ -12,8 +12,13 @@ public:
 	Point(T, ...);
 	~Point(void);
 
+	// Position Accessors
 	Vector<T,n> position();
 	void setPosition(Vector<T,n>);
+
+	// Distance
+	T distance(Point);
+	T distance(Point,unsigned int);
 };
 
 /////////////////////////////////////////////
@@ -61,6 +66,20 @@ template<class T, unsigned int n>
 void Point<T,n>::setPosition(Vector<T,n> v)
 {
 	m_vPosition = v;
+}
+
+template<class T, unsigned int n>
+T Point<T,n>::distance(Point<T,n> pos)
+{
+	Vector<T,n> dist = this->position()-pos.position();
+	return dist.magnitude();
+}
+
+template<class T, unsigned int n>
+T Point<T,n>::distance(Point<T,n> pos, unsigned int i)
+{
+	Vector<T,n> dist = this->position()-pos.position();
+	return dist.coeff(i);
 }
 
 /////////////////////////////////////////////
