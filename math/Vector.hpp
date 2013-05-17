@@ -22,7 +22,7 @@ public:
 	void coeff(T, unsigned int);
 
 	// Friend Operators
-	template<class T, unsigned int n> friend ostream& operator << (ostream&, const Vector<T,n>&);
+	template<class t, unsigned int N> friend ostream& operator << (ostream&, const Vector<T,n>&);
 
 	// Accessor Operators
 	T operator[](unsigned int);

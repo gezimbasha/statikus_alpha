@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Vector.hpp"
+#include "math/Vector.hpp"
+#include "mechanics/point.hpp"
 
 using namespace std;
-const int n = 20;
 
 int main()
 {
